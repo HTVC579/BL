@@ -2,9 +2,7 @@ name: Build Extensions
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -19,14 +17,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
-      - name: Build Plugins
+      - name: Force Install Wrapper & Build
         run: |
-          chmod +x gradlew || true
-          ./gradlew assembleDebug || gradle assembleDebug
-          gradle -b makePlugins.gradle makePlugins || true
+          gradle wrapper --gradle-version 8.5
+          chmod +x gradlew
+          ./gradlew makePlugins --stacktrace
 
       - name: Deploy to builds branch
         uses: peaceiris/actions-gh-pages@v3
