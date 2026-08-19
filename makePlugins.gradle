@@ -1,0 +1,24 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+task makePlugins {
+    doLast {
+        def buildsDir = file("builds")
+        if (!buildsDir.exists()) buildsDir.mkdirs()
+
+        def plugins = []
+        fileTree(dir: ".", include: "**/*.apk").each { apk ->
+            plugins.add([
+                "name": apk.name.replace(".apk", ""),
+                "url": "https://raw.githubusercontent.com/HTVC579/BL/builds/${apk.name}"
+            ])
+            copy {
+                from apk
+                into buildsDir
+            }
+        }
+
+        def jsonFile = file("builds/plugins.json")
+        jsonFile.text = JsonOutput.toJson(plugins)
+    }
+}
