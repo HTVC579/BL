@@ -1,9 +1,0 @@
-[versions] 
-agp = "8.2.2"
-kotlin = "1.9.22"
-cloudstream = "pre-release"
-
-[plugins]
-android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-cloudstream = { id = "com.lagradost.cloudstream3.gradle", version.ref = "cloudstream" }
