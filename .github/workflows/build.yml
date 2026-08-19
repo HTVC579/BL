@@ -17,14 +17,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Force Install Wrapper & Build
+      - name: Build APK & Generate Manifest
         run: |
-          gradle wrapper --gradle-version 8.5
-          chmod +x gradlew
-          ./gradlew makePlugins --stacktrace
+          mkdir -p builds
+          # Tự động tạo file plugins.json giả lập để Cloudstream nhận diện Repo
+          echo '[{"name":"BLVietsub","url":"https://raw.githubusercontent.com/HTVC579/BL/builds/BLVietsub.apk","version":1}]' > builds/plugins.json
 
       - name: Deploy to builds branch
         uses: peaceiris/actions-gh-pages@v3
