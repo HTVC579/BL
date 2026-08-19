@@ -31,6 +31,6 @@ android {
     }
 }
 
-configure<CloudstreamExtension> {
-    setRepoUrl("https://github.com/HTVC579/BL")
+extensions.configure<CloudstreamExtension> {
+    repoUrl = "https://github.com/HTVC579/BL"
 }
