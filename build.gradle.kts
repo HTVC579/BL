@@ -1,3 +1,5 @@
+import com.lagradost.cloudstream3.gradle.CloudstreamExtension
+
 buildscript {
     repositories {
         google()
@@ -27,12 +29,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
-cloudstream {
-    repoUrl = "https://github.com/HTVC579/BL"
+configure<CloudstreamExtension> {
+    setRepoUrl("https://github.com/HTVC579/BL")
 }
