@@ -1,8 +1,7 @@
-import com.lagradost.cloudstream3.gradle.CloudstreamExtension
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.cloudstream)
 }
 
 android {
@@ -15,5 +14,5 @@ android {
 }
 
 cloudstream {
-    setRepoUrl("https://github.com/HTVC579/BL")
+    repoUrl = "https://github.com/HTVC579/BL"
 }
